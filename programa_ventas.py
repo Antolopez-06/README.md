@@ -6,16 +6,15 @@ precios = {}
 while True: # Bucle para que luego de cada opción vuelvas al menú
 
     print ("Tienda BluestCat")  # Cargamos la bienvenida y el menú de opciones
-    print ("1. Carga Inicial de Productos con su Stock")
-    print ("2. Carga de Precios")
-    print ("3. Visualización de Inventario")
-    print ("4. Consulta de Stock (Existencias Individuales)")
-    print ("5. Reporte de Agotados")
-    print ("6. Alta de Nuevo Producto")
-    print ("7. Actualización de Stock (Ingresos)")
-    print ("8. Carga de Ventas")
-    print ("9. Estadísticas")
-    print ("10. Salir ")
+    print ("1. Carga Inicial de Productos con su Stock y Precios")
+    print ("2. Visualización de Inventario")
+    print ("3. Consulta de Stock (Existencias Individuales)")
+    print ("4. Reporte de Agotados")
+    print ("5. Alta de Nuevo Producto")
+    print ("6. Actualización de Stock (Ingresos)")
+    print ("7. Carga de Ventas")
+    print ("8. Estadísticas")
+    print ("9. Salir ")
 
     opcion = input ("Ingrese la opción a realizar ") # Pedimos que elijan un número del 1 al 10
 
@@ -35,15 +34,22 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
                             break
                         else: 
                             stock_inicial = input (f"Ingrese el stock inicial de {productos_cargar}")
-                            if stock_inicial == " " or stock_inicial == "":
+                            if stock_inicial == " " or stock_inicial == "": # Validamos que no este vacío
                                 print ("No se permiten caracteres vacíos")
                                 break
-                            else: # Si es un nombre válido lo agregamos a la lista de herramientas previamente creada
-                                inventario[productos_cargar.title()] = stock_inicial
+                            else:
+                                precio_inicial = input (f"Ingrese el precio unitario de {productos_cargar}")
+                                if precio_inicial == " " or precio_inicial == "": # Validamos que no este vacío
+                                    print ("No se permiten caracteres vacíos") 
+                                else: 
+                                    inventario[productos_cargar.title()] = stock_inicial
+                                    precios[productos_cargar.title()] = precio_inicial
                 else:
                     print ("Por favor ingrese un número") # Si no ingresan un número, imprimimos el aviso
 
                 print (inventario)
+                print (precios)
+
         case "2":
             pass
         case "3":
