@@ -6,14 +6,14 @@ precios = {}
 while True: # Bucle para que luego de cada opción vuelvas al menú
 
     print ("Tienda BluestCat")  # Cargamos la bienvenida y el menú de opciones
-    print ("1. Carga Inicial de Productos con su Stock y Precios")
+    print ("1. Carga de Productos con su Stock y Precios")
     print ("2. Visualización de Inventario")
     print ("3. Visualización de Precios")
     print ("4. Consulta de Stock (Existencias Individuales)")
     print ("5. Consulta de Precio Individual")
     print ("6. Reporte de Agotados")
-    print ("7. Alta de Nuevo Producto")
-    print ("8. Actualización de Stock (Ingresos)")
+    print ("7. Actualización de Stock (Ingresos)")
+    print ("8. Actualización de Precios")
     print ("9. Carga de Ventas")
     print ("10. Estadísticas")
     print ("11. Salir ")
@@ -85,11 +85,34 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
             else:
                 print ("Ese producto no se encuentra en el sistema")
 
-        case "6":
-            pass
-        case "7":
-            pass
-        case "8":
+        case "6": # Reporte de Agotados
+            
+            l = len(inventario)
+
+            for clave, valor in inventario.items():
+                if valor == 0:
+                    print(f"{clave} tiene stock cero")
+
+        case "7": #  Actualización de Stock (Ingresos)
+            
+            nombre_producto = input ("Ingrese el nombre del producto que quiere agregar stock ")
+
+            if nombre_producto.strip() != "": # Validamos que no este vacío
+                if nombre_producto.title() in inventario:
+                    cantidad_stock = input ("Ingrese la cantidad de stock que quiere agregar ")
+                    if cantidad_stock.isdigit():
+                        stock_previo = inventario[nombre_producto.title()]
+                        stock_final = int(stock_previo) + int(cantidad_stock)
+                        inventario[nombre_producto.title()] = stock_final
+                        print ("Se actualizó el inventario correctamente")
+                    else:
+                        print ("Por favor ingrese un número")
+                else:
+                    print ("El producto ingresado no se encuentra en el sistema")
+            else:
+                print ("El producto no puede estar vacío")
+
+        case "8": # Actualización de Precios
             pass
         case "9":
             pass
