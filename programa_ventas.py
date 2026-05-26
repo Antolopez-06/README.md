@@ -31,11 +31,11 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
                 if num_productos.isdigit(): # Si es un digito realizamos la acción correspondiente a este punto
                     for a in range (int(num_productos)): # Creamos un ciclo que se repita la cantidad de veces como herramienta fueron pedidas 
                         productos_cargar = input (f"Ingrese el nombre del producto {a+1} a cargar ") # En cada vuelta pedimos el nombre de la herramienta a cargar 
-                        if productos_cargar == " " or productos_cargar == "" or productos_cargar in inventario: # Validamos que no este vacío ni duplicado
+                        if productos_cargar == " " or productos_cargar == "" or productos_cargar.strip() in inventario: # Validamos que no este vacío ni duplicado
                             print ("No se permiten caracteres vacíos ni herramientas duplicadas")
                             break
                         else: 
-                            stock_inicial = input (f"Ingrese el stock inicial de {productos_cargar} ")
+                            stock_inicial = input (f"Ingrese el stock inicial de {productos_cargar.strip()} ")
                             if stock_inicial == " " or stock_inicial == "": # Validamos que no este vacío
                                 print ("No se permiten caracteres vacíos")
                                 break
@@ -44,8 +44,8 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
                                 if precio_inicial == " " or precio_inicial == "": # Validamos que no este vacío
                                     print ("No se permiten caracteres vacíos") 
                                 else: 
-                                    inventario[productos_cargar.title()] = stock_inicial
-                                    precios[productos_cargar.title()] = precio_inicial
+                                    inventario[productos_cargar.title().strip()] = stock_inicial
+                                    precios[productos_cargar.title().strip()] = precio_inicial
                 else:
                     print ("Por favor ingrese un número") # Si no ingresan un número, imprimimos el aviso
 
@@ -71,8 +71,8 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
             
             nombre_producto = input ("Ingrese el nombre del producto que quiere saber el stock ")
 
-            if nombre_producto.title() in inventario:
-                print (f"Del producto {nombre_producto.title()} hay {inventario[nombre_producto.title()]} unidades")
+            if nombre_producto.title().strip() in inventario:
+                print (f"Del producto {nombre_producto.title().strip()} hay {inventario[nombre_producto.title().strip()]} unidades")
             else:
                 print ("Ese producto no se encuentra en el sistema")
 
@@ -80,14 +80,12 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
             
             nombre_producto = input ("Ingrese el nombre del producto que quiere saber el precio ")
 
-            if nombre_producto.title() in inventario:
-                print (f"El producto {nombre_producto.title()} sale ${precios[nombre_producto.title()]}")
+            if nombre_producto.title().strip() in inventario:
+                print (f"El producto {nombre_producto.title().strip()} sale ${precios[nombre_producto.title().strip()]}")
             else:
                 print ("Ese producto no se encuentra en el sistema")
 
         case "6": # Reporte de Agotados
-            
-            l = len(inventario)
 
             for clave, valor in inventario.items():
                 if valor == 0:
@@ -98,12 +96,12 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
             nombre_producto = input ("Ingrese el nombre del producto que quiere agregar stock ")
 
             if nombre_producto.strip() != "": # Validamos que no este vacío
-                if nombre_producto.title() in inventario:
+                if nombre_producto.title().strip() in inventario:
                     cantidad_stock = input ("Ingrese la cantidad de stock que quiere agregar ")
                     if cantidad_stock.isdigit():
-                        stock_previo = inventario[nombre_producto.title()]
+                        stock_previo = inventario[nombre_producto.title().strip()]
                         stock_final = int(stock_previo) + int(cantidad_stock)
-                        inventario[nombre_producto.title()] = stock_final
+                        inventario[nombre_producto.title().strip()] = stock_final
                         print ("Se actualizó el inventario correctamente")
                     else:
                         print ("Por favor ingrese un número")
@@ -113,7 +111,23 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
                 print ("El producto no puede estar vacío")
 
         case "8": # Actualización de Precios
-            pass
+
+            nombre_producto = input ("Ingrese el nombre del producto que quiere modificar el precio ")
+
+            if nombre_producto.strip() != "": # Validamos que no este vacío
+                if nombre_producto.title().strip() in inventario:
+                    precio_actual = input ("Ingrese el nuevo precio ")
+                    if precio_actual.isdigit():
+                        precios[nombre_producto.title().strip()] = precio_actual
+                        print ("Se actualizó el precio correctamente")
+                    else:
+                        print ("Por favor ingrese un número")
+                else:
+                    print ("El producto ingresado no se encuentra en el sistema")
+            else:
+                print ("El producto no puede estar vacío")
+            
+
         case "9":
             pass
         case "10":
