@@ -1,6 +1,6 @@
 # Trabajo Practico N° 2 - Organización Empresarial
 
-inventario = {} # Diccionario a utilizar
+inventario = {} # Diccionarios a utilizar
 precios = {}
 
 while True: # Bucle para que luego de cada opción vuelvas al menú
@@ -8,13 +8,14 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
     print ("Tienda BluestCat")  # Cargamos la bienvenida y el menú de opciones
     print ("1. Carga Inicial de Productos con su Stock y Precios")
     print ("2. Visualización de Inventario")
-    print ("3. Consulta de Stock (Existencias Individuales)")
-    print ("4. Reporte de Agotados")
-    print ("5. Alta de Nuevo Producto")
-    print ("6. Actualización de Stock (Ingresos)")
-    print ("7. Carga de Ventas")
-    print ("8. Estadísticas")
-    print ("9. Salir ")
+    print ("3. Visualización de Precios")
+    print ("4. Consulta de Stock (Existencias Individuales)")
+    print ("5. Reporte de Agotados")
+    print ("6. Alta de Nuevo Producto")
+    print ("7. Actualización de Stock (Ingresos)")
+    print ("8. Carga de Ventas")
+    print ("9. Estadísticas")
+    print ("10. Salir ")
 
     opcion = input ("Ingrese la opción a realizar ") # Pedimos que elijan un número del 1 al 10
 
@@ -33,12 +34,12 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
                             print ("No se permiten caracteres vacíos ni herramientas duplicadas")
                             break
                         else: 
-                            stock_inicial = input (f"Ingrese el stock inicial de {productos_cargar}")
+                            stock_inicial = input (f"Ingrese el stock inicial de {productos_cargar} ")
                             if stock_inicial == " " or stock_inicial == "": # Validamos que no este vacío
                                 print ("No se permiten caracteres vacíos")
                                 break
                             else:
-                                precio_inicial = input (f"Ingrese el precio unitario de {productos_cargar}")
+                                precio_inicial = input (f"Ingrese el precio unitario de {productos_cargar} ")
                                 if precio_inicial == " " or precio_inicial == "": # Validamos que no este vacío
                                     print ("No se permiten caracteres vacíos") 
                                 else: 
@@ -47,13 +48,24 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
                 else:
                     print ("Por favor ingrese un número") # Si no ingresan un número, imprimimos el aviso
 
-                print (inventario)
-                print (precios)
+                print ("Información cargada correctamente")
 
         case "2":
-            pass
+
+            if inventario:
+                print ("El inventario actual es el siguiente:")
+                print (inventario)
+            else: 
+                print ("Por favor cargue el inventario primero")
+
         case "3":
-            pass
+            
+            if precios:
+                print ("La lista de precios es la siguiente:")
+                print (precios)
+            else: 
+                print ("Por favor cargue los precios primero")
+                        
         case "4":
             pass
         case "5":
