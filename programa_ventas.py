@@ -10,18 +10,19 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
     print ("2. Visualización de Inventario")
     print ("3. Visualización de Precios")
     print ("4. Consulta de Stock (Existencias Individuales)")
-    print ("5. Reporte de Agotados")
-    print ("6. Alta de Nuevo Producto")
-    print ("7. Actualización de Stock (Ingresos)")
-    print ("8. Carga de Ventas")
-    print ("9. Estadísticas")
-    print ("10. Salir ")
+    print ("5. Consulta de Precio Individual")
+    print ("6. Reporte de Agotados")
+    print ("7. Alta de Nuevo Producto")
+    print ("8. Actualización de Stock (Ingresos)")
+    print ("9. Carga de Ventas")
+    print ("10. Estadísticas")
+    print ("11. Salir ")
 
     opcion = input ("Ingrese la opción a realizar ") # Pedimos que elijan un número del 1 al 10
 
     match opcion: # Unimos el número dado a la acción a realizar
 
-        case "1": # Carga inicial de productos
+        case "1": # Carga Inicial de Productos con su Stock y Precios
             
             num_productos = input ("Ingrese el número de productos a cargar ") 
             if num_productos == " " or num_productos == "": # Si el número está vacío o presionan enter, imprimimos un aviso
@@ -50,7 +51,7 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
 
                 print ("Información cargada correctamente")
 
-        case "2":
+        case "2": # Visualización de Inventario"
 
             if inventario:
                 print ("El inventario actual es el siguiente:")
@@ -58,7 +59,7 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
             else: 
                 print ("Por favor cargue el inventario primero")
 
-        case "3":
+        case "3": # Visualización de Precios
             
             if precios:
                 print ("La lista de precios es la siguiente:")
@@ -66,10 +67,24 @@ while True: # Bucle para que luego de cada opción vuelvas al menú
             else: 
                 print ("Por favor cargue los precios primero")
                         
-        case "4":
-            pass
-        case "5":
-            pass
+        case "4": # Consulta de Stock (Existencias Individuales)
+            
+            nombre_producto = input ("Ingrese el nombre del producto que quiere saber el stock ")
+
+            if nombre_producto.title() in inventario:
+                print (f"Del producto {nombre_producto.title()} hay {inventario[nombre_producto.title()]} unidades")
+            else:
+                print ("Ese producto no se encuentra en el sistema")
+
+        case "5": # Consulta de Precio Individual
+            
+            nombre_producto = input ("Ingrese el nombre del producto que quiere saber el precio ")
+
+            if nombre_producto.title() in inventario:
+                print (f"El producto {nombre_producto.title()} sale ${precios[nombre_producto.title()]}")
+            else:
+                print ("Ese producto no se encuentra en el sistema")
+
         case "6":
             pass
         case "7":
